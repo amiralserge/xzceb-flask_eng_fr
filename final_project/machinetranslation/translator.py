@@ -15,9 +15,11 @@ language_translator = LanguageTranslatorV3(
 )
 
 language_translator.set_service_url(url)
-
+# language_translator.set_disable_ssl_verification(True)
 
 def english_to_french(english_text):
+    if not english_text:
+        return english_text
     translation = language_translator.translate(
         text=english_text, model_id='en-fr'
     ).get_result()
@@ -26,6 +28,8 @@ def english_to_french(english_text):
 
 
 def french_to_english(french_text):
+    if not french_text:
+        return french_text
     translation = language_translator.translate(
         text=french_text, model_id='fr-en'
     ).get_result()
